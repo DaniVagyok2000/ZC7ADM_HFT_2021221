@@ -22,7 +22,9 @@ namespace ZC7ADM_HFT_2021221.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GuestId { get; set; }
         [ForeignKey(nameof(Employee))]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
+        public Food DeliveredFood { get; set; }
 
     }
 }

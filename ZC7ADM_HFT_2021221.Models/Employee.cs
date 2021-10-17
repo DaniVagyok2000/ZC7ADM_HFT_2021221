@@ -15,8 +15,7 @@ namespace ZC7ADM_HFT_2021221.Models
         public virtual Restaurant Restaurant { get; set; }
         [Required]
         public string Name { get; set; }
-        
-        public Food DeliveredFood  { get; set; }
+       
         [Required]
         public int Salary  { get; set; }
         [Key]
