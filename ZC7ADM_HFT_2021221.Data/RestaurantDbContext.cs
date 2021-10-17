@@ -27,7 +27,15 @@ namespace ZC7ADM_HFT_2021221.Data
             modelBuilder.Entity<Restaurant>()
                 .HasMany(r=>r.Employees)
                 .WithOne(e=>e.Restaurant)
-                ;
+                .HasForeignKey(fk=>fk.Restaurant)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<Employee>()
+                .HasMany(g => g.Guests)
+                .WithOne(r => r.Employee)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasForeignKey(fk=>fk.Employee);
+
+
         }
 
         public RestaurantDbContext()
