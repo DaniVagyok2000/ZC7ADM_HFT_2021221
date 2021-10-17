@@ -22,6 +22,14 @@ namespace ZC7ADM_HFT_2021221.Data
             }
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Restaurant>()
+                .HasMany(r=>r.Employees)
+                .WithOne(e=>e.Restaurant)
+                ;
+        }
+
         public RestaurantDbContext()
         {
             this.Database.EnsureCreated();
