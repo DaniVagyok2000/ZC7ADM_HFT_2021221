@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ZC7ADM_HFT_2021221.Models
 {
-    class Food
+
+    //Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True
+    public class Food
     {
         public int Price { get; set; }
         public string Name { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZC7ADM_HFT_2021221.Models
 {
-    class Restaurant
+     public class Restaurant
     {
         public string Chef { get; set; }
         public List<Food> Foodlist  { get; set; }

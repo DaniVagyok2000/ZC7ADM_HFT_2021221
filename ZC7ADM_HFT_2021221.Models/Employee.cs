@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ZC7ADM_HFT_2021221.Models
 {
-    class Employee
+    public class Employee
     {
         public string Name { get; set; }
         public string Food  { get; set; }
