@@ -20,7 +20,7 @@ namespace ZC7ADM_HFT_2021221.Models
         public string Number { get; set; }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int GuestId { get; set; }
+        public  int GuestId { get; set; }
         [ForeignKey(nameof(Employee))]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
