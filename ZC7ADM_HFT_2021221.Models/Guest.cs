@@ -24,6 +24,7 @@ namespace ZC7ADM_HFT_2021221.Models
         [ForeignKey(nameof(Employee))]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
+        [NotMapped]
         public Food DeliveredFood { get; set; }
 
     }

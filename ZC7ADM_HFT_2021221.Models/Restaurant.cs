@@ -15,7 +15,8 @@ namespace ZC7ADM_HFT_2021221.Models
         [Required]
         public string RestaurantName { get; set; }
         [Required]
-        public List<Food> Foodlist  { get; set; }
+        [NotMapped]
+        public virtual List<Food> Foodlist  { get; set; }
         
         public int Rating { get; set; }
         [Key]

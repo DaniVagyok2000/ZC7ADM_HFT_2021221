@@ -9,7 +9,7 @@ namespace ZC7ADM_HFT_2021221.Client
         static void Main(string[] args)
         {
             RestaurantDbContext ctx = new RestaurantDbContext();
-            var jh = ctx.Guests.Where(x => x.Name.Equals("James Hetfield")).Select(x => new { Name = x.Name, Email = x.Email });
+            var jh = ctx.Employees.ToArray();
 
 
             foreach (var item in jh)

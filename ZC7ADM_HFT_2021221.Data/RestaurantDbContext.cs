@@ -30,13 +30,13 @@ namespace ZC7ADM_HFT_2021221.Data
             modelBuilder.Entity<Restaurant>()
                 .HasMany(r=>r.Employees)
                 .WithOne(e=>e.Restaurant)
-                .HasForeignKey(fk=>fk.RestaurantId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasForeignKey(k=>k.RestaurantId);
             modelBuilder.Entity<Employee>()
                 .HasMany(g => g.Guests)
                 .WithOne(r => r.Employee)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasForeignKey(fk=>fk.GuestId);
+                .HasForeignKey(k=>k.GuestId);
            
             #region filling database with datas
 
@@ -85,7 +85,7 @@ namespace ZC7ADM_HFT_2021221.Data
 
             Employee ItalianoBob = new Employee()
             {
-                EmployeeId = 0,
+                EmployeeId = 2,
                 Restaurant = Italiano,
                 Name = "Bob",
                 Salary = 250000,
@@ -101,7 +101,7 @@ namespace ZC7ADM_HFT_2021221.Data
 
             Employee SoupDan = new Employee()
             {
-                EmployeeId = 0,
+                EmployeeId = 2,
                 Restaurant = Soupaurant,
                 Name = "Dan",
                 Salary = 300000,
@@ -122,8 +122,8 @@ namespace ZC7ADM_HFT_2021221.Data
                 Email = "metallica.james.hetfield@gmail.com",
                 Employee = SoupKirk,
                 DeliveredFood = MeatSoup,
-                GuestId = 0,
-                OrderId = 0
+                GuestId = 2,
+                OrderId = 2
             };
 
             Guest LU = new Guest()
@@ -139,13 +139,13 @@ namespace ZC7ADM_HFT_2021221.Data
 
             Guest SG = new Guest()
             {
-                Name = "Synister Gates",
+                Name = "Synyster Gates",
                 Number = "06 20 123 4432",
                 Email = "avengedsevenfold.synister.gates@gmail.com",
                 Employee = ItalianoMario,
                 DeliveredFood = Pizza,
-                GuestId = 0,
-                OrderId = 0
+                GuestId = 2,
+                OrderId = 2
             };
 
             Guest MS = new Guest()
@@ -164,6 +164,8 @@ namespace ZC7ADM_HFT_2021221.Data
             modelBuilder.Entity<Restaurant>().HasData(Italiano,Soupaurant);
             modelBuilder.Entity<Employee>().HasData(ItalianoBob,ItalianoMario,SoupDan,SoupKirk);
             modelBuilder.Entity<Guest>().HasData(JH,LU,SG,MS);
+            modelBuilder.Entity<Food>().HasNoKey();
+
         }
 
         public RestaurantDbContext()
