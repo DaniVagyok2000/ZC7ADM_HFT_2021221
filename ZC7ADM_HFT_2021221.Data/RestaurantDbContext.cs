@@ -36,7 +36,7 @@ namespace ZC7ADM_HFT_2021221.Data
                 .HasMany(g => g.Guests)
                 .WithOne(r => r.Employee)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasForeignKey(k=>k.GuestId);
+                .HasForeignKey(k=>k.OrderId);
            
             #region filling database with datas
 
@@ -89,11 +89,13 @@ namespace ZC7ADM_HFT_2021221.Data
                 Restaurant = Italiano,
                 Name = "Bob",
                 Salary = 250000,
+                RestaurantId=Italiano.Restaurant_id
             };
 
             Employee ItalianoMario = new Employee()
             {
                 EmployeeId = 1,
+                RestaurantId=Italiano.Restaurant_id,
                 Restaurant = Italiano,
                 Name = "Mario",
                 Salary = 255000,
@@ -105,6 +107,7 @@ namespace ZC7ADM_HFT_2021221.Data
                 Restaurant = Soupaurant,
                 Name = "Dan",
                 Salary = 300000,
+                RestaurantId=Soupaurant.Restaurant_id
             };
 
             Employee SoupKirk = new Employee()
@@ -113,6 +116,7 @@ namespace ZC7ADM_HFT_2021221.Data
                 Restaurant = Soupaurant,
                 Name = "Kirk",
                 Salary = 350000,
+                RestaurantId=Soupaurant.Restaurant_id
             };
 
             Guest JH = new Guest()
@@ -123,7 +127,7 @@ namespace ZC7ADM_HFT_2021221.Data
                 Employee = SoupKirk,
                 DeliveredFood = MeatSoup,
                 GuestId = 2,
-                OrderId = 2
+                OrderId = SoupKirk.EmployeeId
             };
 
             Guest LU = new Guest()
@@ -134,7 +138,7 @@ namespace ZC7ADM_HFT_2021221.Data
                 Employee = SoupKirk,
                 DeliveredFood = GulyasSoup,
                 GuestId = 1,
-                OrderId = 1
+                OrderId = SoupKirk.EmployeeId
             };
 
             Guest SG = new Guest()
@@ -145,7 +149,7 @@ namespace ZC7ADM_HFT_2021221.Data
                 Employee = ItalianoMario,
                 DeliveredFood = Pizza,
                 GuestId = 2,
-                OrderId = 2
+                OrderId = ItalianoMario.EmployeeId
             };
 
             Guest MS = new Guest()
@@ -156,7 +160,7 @@ namespace ZC7ADM_HFT_2021221.Data
                 Employee = ItalianoBob,
                 DeliveredFood = Pasta,
                 GuestId = 1,
-                OrderId = 1
+                OrderId = ItalianoBob.EmployeeId
             };
 
             #endregion

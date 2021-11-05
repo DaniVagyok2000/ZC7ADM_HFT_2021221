@@ -21,6 +21,7 @@ namespace ZC7ADM_HFT_2021221.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EmployeeId { get; set; }
+
         [ForeignKey(nameof(Restaurant))]
         public int RestaurantId { get; set; }
 
