@@ -8,7 +8,7 @@ using ZC7ADM_HFT_2021221.Models;
 
 namespace ZC7ADM_HFT_2021221.Repository
 {
-    class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository
     {
 
         RestaurantDbContext db;

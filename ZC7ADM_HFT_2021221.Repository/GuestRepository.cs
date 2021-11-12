@@ -8,7 +8,7 @@ using ZC7ADM_HFT_2021221.Models;
 
 namespace ZC7ADM_HFT_2021221.Repository
 {
-    class GuestRepository : IGuestRepository
+    public class GuestRepository : IGuestRepository
     {
 
         RestaurantDbContext db;
