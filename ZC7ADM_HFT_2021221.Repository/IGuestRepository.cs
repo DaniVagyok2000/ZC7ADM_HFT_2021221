@@ -3,7 +3,7 @@ using ZC7ADM_HFT_2021221.Models;
 
 namespace ZC7ADM_HFT_2021221.Repository
 {
-    interface IGuestRepository
+    public interface IGuestRepository
     {
         void Create(Guest rest);
         void Delete(int id);

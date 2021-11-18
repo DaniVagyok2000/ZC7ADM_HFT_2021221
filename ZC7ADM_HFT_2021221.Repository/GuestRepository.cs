@@ -19,9 +19,9 @@ namespace ZC7ADM_HFT_2021221.Repository
         }
 
 
-        public void Create(Guest rest)
+        public void Create(Guest guest)
         {
-            db.Guests.Add(rest);
+            db.Guests.Add(guest);
             db.SaveChanges();
         }
 
@@ -40,16 +40,16 @@ namespace ZC7ADM_HFT_2021221.Repository
             db.SaveChanges();
         }
 
-        public void Update(Guest rest)
+        public void Update(Guest guest)
         {
-            var oldrest = Read(rest.GuestId);
-            oldrest.Name = rest.Name;
-            oldrest.DeliveredFood = rest.DeliveredFood;
-            oldrest.Email = rest.Email;
-            oldrest.Employee = rest.Employee;
-            oldrest.GuestId = rest.GuestId;
-            oldrest.Number = rest.Number;
-            oldrest.OrderId = rest.OrderId;
+            var oldrest = Read(guest.GuestId);
+            oldrest.Name = guest.Name;
+            oldrest.DeliveredFood = guest.DeliveredFood;
+            oldrest.Email = guest.Email;
+            oldrest.Employee = guest.Employee;
+            oldrest.GuestId = guest.GuestId;
+            oldrest.Number = guest.Number;
+            oldrest.OrderId = guest.OrderId;
             db.SaveChanges();
 
         }

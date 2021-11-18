@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ZC7ADM_HFT_2021221.Data
 {
-    public class RestaurantDbContext: DbContext
+    public class RestaurantDbContext : DbContext
     {
 
         public virtual DbSet<Restaurant> Restaurants { get; set; }
@@ -27,22 +27,23 @@ namespace ZC7ADM_HFT_2021221.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Restaurant>()
-                .HasMany(r=>r.Employees)
-                .WithOne(e=>e.Restaurant)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasForeignKey(k=>k.RestaurantId);
             modelBuilder.Entity<Employee>()
-                .HasMany(g => g.Guests)
-                .WithOne(r => r.Employee)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasForeignKey(k=>k.OrderId);
-           
+            .HasMany(g => g.Guests)
+            .WithOne(r => r.Employee)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasForeignKey(k => k.OrderId);
+            modelBuilder.Entity<Restaurant>()
+                .HasMany(e=>e.Employees)
+                .WithOne(r=>r.Restaurant)
+                .HasForeignKey(fk=>fk.RestaurantId).OnDelete(DeleteBehavior.ClientSetNull);
+
+
             #region filling database with datas
 
 
             Food GulyasSoup = new Food()
-            { Name = "Gulyás leves",
+            {
+                Name = "Gulyás leves",
                 Price = 2500
             };
             Food MeatSoup = new Food()
@@ -63,10 +64,10 @@ namespace ZC7ADM_HFT_2021221.Data
 
             Restaurant Soupaurant = new Restaurant()
             {
+                Restaurant_id = 1,
                 RestaurantName = "Soupaurant",
                 Foodlist = new List<Food>(),
-                Rating = 4,
-                Restaurant_id=1                
+                Rating = 4
             };
 
             Soupaurant.Foodlist.Add(GulyasSoup);
@@ -74,10 +75,10 @@ namespace ZC7ADM_HFT_2021221.Data
 
             Restaurant Italiano = new Restaurant()
             {
+                Restaurant_id=2,
                 RestaurantName = "Italiano",
                 Foodlist = new List<Food>(),
-                Rating = 5,
-                Restaurant_id = 2
+                Rating = 5
             };
 
             Italiano.Foodlist.Add(Pizza);
@@ -85,38 +86,38 @@ namespace ZC7ADM_HFT_2021221.Data
 
             Employee ItalianoBob = new Employee()
             {
-                EmployeeId = 2,
-                Restaurant = Italiano,
+                EmployeeId = 1,
+                //Restaurant = Italiano,
                 Name = "Bob",
                 Salary = 250000,
-                RestaurantId=Italiano.Restaurant_id
+                //RestaurantId = Italiano.Restaurant_id
             };
 
             Employee ItalianoMario = new Employee()
             {
-                EmployeeId = 1,
-                RestaurantId=Italiano.Restaurant_id,
-                Restaurant = Italiano,
+                EmployeeId = 2,
+                //RestaurantId = Italiano.Restaurant_id,
+                //Restaurant = Italiano,
                 Name = "Mario",
                 Salary = 255000,
             };
 
             Employee SoupDan = new Employee()
             {
-                EmployeeId = 2,
-                Restaurant = Soupaurant,
+                EmployeeId = 3,
+                //Restaurant = Soupaurant,
                 Name = "Dan",
                 Salary = 300000,
-                RestaurantId=Soupaurant.Restaurant_id
+                //RestaurantId = Soupaurant.Restaurant_id
             };
 
             Employee SoupKirk = new Employee()
             {
-                EmployeeId = 1,
-                Restaurant = Soupaurant,
+                EmployeeId = 4,
+                //Restaurant = Soupaurant,
                 Name = "Kirk",
                 Salary = 350000,
-                RestaurantId=Soupaurant.Restaurant_id
+                //RestaurantId = Soupaurant.Restaurant_id
             };
 
             Guest JH = new Guest()
@@ -124,10 +125,10 @@ namespace ZC7ADM_HFT_2021221.Data
                 Name = "James Hetfield",
                 Number = "06201111213",
                 Email = "metallica.james.hetfield@gmail.com",
-                Employee = SoupKirk,
+                //Employee = SoupKirk,
                 DeliveredFood = MeatSoup,
-                GuestId = 2,
-                OrderId = SoupKirk.EmployeeId
+                GuestId = 4,
+                //OrderId = SoupKirk.EmployeeId
             };
 
             Guest LU = new Guest()
@@ -135,10 +136,10 @@ namespace ZC7ADM_HFT_2021221.Data
                 Name = "Lars Ulrich",
                 Number = "06203451134",
                 Email = "metallica.lars.ulrich@gmail.com",
-                Employee = SoupKirk,
+                //Employee = SoupKirk,
                 DeliveredFood = GulyasSoup,
-                GuestId = 1,
-                OrderId = SoupKirk.EmployeeId
+                GuestId = 3,
+                //OrderId = SoupKirk.EmployeeId
             };
 
             Guest SG = new Guest()
@@ -146,10 +147,10 @@ namespace ZC7ADM_HFT_2021221.Data
                 Name = "Synyster Gates",
                 Number = "06 20 123 4432",
                 Email = "avengedsevenfold.synister.gates@gmail.com",
-                Employee = ItalianoMario,
+               // Employee = ItalianoMario,
                 DeliveredFood = Pizza,
                 GuestId = 2,
-                OrderId = ItalianoMario.EmployeeId
+                //OrderId = ItalianoMario.EmployeeId
             };
 
             Guest MS = new Guest()
@@ -157,17 +158,17 @@ namespace ZC7ADM_HFT_2021221.Data
                 Name = "Matt Shadows",
                 Number = "06 20 678 9945",
                 Email = "avengedsevenfold.synister.gates@gmail.com",
-                Employee = ItalianoBob,
+                //Employee = ItalianoBob,
                 DeliveredFood = Pasta,
                 GuestId = 1,
-                OrderId = ItalianoBob.EmployeeId
+                //OrderId = ItalianoBob.EmployeeId
             };
 
             #endregion
 
-            modelBuilder.Entity<Restaurant>().HasData(Italiano,Soupaurant);
-            modelBuilder.Entity<Employee>().HasData(ItalianoBob,ItalianoMario,SoupDan,SoupKirk);
-            modelBuilder.Entity<Guest>().HasData(JH,LU,SG,MS);
+            modelBuilder.Entity<Restaurant>().HasData(Italiano, Soupaurant);
+            modelBuilder.Entity<Employee>().HasData(ItalianoBob, ItalianoMario, SoupDan, SoupKirk);
+            modelBuilder.Entity<Guest>().HasData(JH, LU, SG, MS);
             modelBuilder.Entity<Food>().HasNoKey();
 
         }
