@@ -8,16 +8,13 @@ namespace ZC7ADM_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            RestaurantDbContext ctx = new RestaurantDbContext();
-            var jh = ctx.Employees.ToArray();
+            RestaurantDbContext db = new RestaurantDbContext();
 
-
-            foreach (var item in jh)
+            var q = db.Employees.Select(x => x.Name);
+            foreach (var item in q)
             {
                 Console.WriteLine(item);
             }
-
-            Console.ReadLine();
         }
     }
 }

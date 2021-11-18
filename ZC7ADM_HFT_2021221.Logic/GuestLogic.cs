@@ -8,7 +8,7 @@ using ZC7ADM_HFT_2021221.Models;
 
 namespace ZC7ADM_HFT_2021221.Logic
 {
-    public class GuestLogic
+    public class GuestLogic : IGuestLogic
     {
         IGuestRepository guestRepo;
 
@@ -44,9 +44,9 @@ namespace ZC7ADM_HFT_2021221.Logic
         //non-crud methods
 
         //Gives back the names of the guests who ate at Italiano
-        public IEnumerable<string> ItalianoGuestNames() 
+        public IEnumerable<string> ItalianoGuestNames()
         {
-           return guestRepo.ReadAll().Where(x => x.Employee.Restaurant.RestaurantName.Equals("Italiano")).Select(g=>g.Name);        
+            return guestRepo.ReadAll().Where(x => x.Employee.Restaurant.RestaurantName.Equals("Italiano")).Select(g => g.Name);
         }
     }
 }

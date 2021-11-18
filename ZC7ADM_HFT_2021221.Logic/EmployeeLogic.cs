@@ -8,7 +8,7 @@ using ZC7ADM_HFT_2021221.Repository;
 
 namespace ZC7ADM_HFT_2021221.Logic
 {
-    public class EmployeeLogic
+    public class EmployeeLogic : IEmployeeLogic
     {
         IEmployeeRepository empRepo;
         public EmployeeLogic(IEmployeeRepository employeeRepository)
@@ -42,11 +42,11 @@ namespace ZC7ADM_HFT_2021221.Logic
 
         //non-crud mothods
 
-        public Employee HadMoreThanTwoGuest() 
+        public Employee HadMoreThanTwoGuest()
         {
             return (Employee)from x in empRepo.ReadAll()
-                   where x.Guests.Count > 2
-                   select x;        
+                             where x.Guests.Count > 2
+                             select x;
         }
 
     }

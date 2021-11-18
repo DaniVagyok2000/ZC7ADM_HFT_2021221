@@ -30,12 +30,11 @@ namespace ZC7ADM_HFT_2021221.Data
             modelBuilder.Entity<Employee>()
             .HasMany(g => g.Guests)
             .WithOne(r => r.Employee)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasForeignKey(k => k.OrderId);
+            .OnDelete(DeleteBehavior.ClientSetNull);
             modelBuilder.Entity<Restaurant>()
                 .HasMany(e=>e.Employees)
                 .WithOne(r=>r.Restaurant)
-                .HasForeignKey(fk=>fk.RestaurantId).OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
 
             #region filling database with datas
@@ -90,13 +89,13 @@ namespace ZC7ADM_HFT_2021221.Data
                 //Restaurant = Italiano,
                 Name = "Bob",
                 Salary = 250000,
-                //RestaurantId = Italiano.Restaurant_id
+                RestaurantId = Italiano.Restaurant_id
             };
 
             Employee ItalianoMario = new Employee()
             {
                 EmployeeId = 2,
-                //RestaurantId = Italiano.Restaurant_id,
+                RestaurantId = Italiano.Restaurant_id,
                 //Restaurant = Italiano,
                 Name = "Mario",
                 Salary = 255000,
@@ -105,19 +104,17 @@ namespace ZC7ADM_HFT_2021221.Data
             Employee SoupDan = new Employee()
             {
                 EmployeeId = 3,
-                //Restaurant = Soupaurant,
                 Name = "Dan",
                 Salary = 300000,
-                //RestaurantId = Soupaurant.Restaurant_id
+                RestaurantId = Soupaurant.Restaurant_id
             };
 
             Employee SoupKirk = new Employee()
             {
                 EmployeeId = 4,
-                //Restaurant = Soupaurant,
                 Name = "Kirk",
                 Salary = 350000,
-                //RestaurantId = Soupaurant.Restaurant_id
+                RestaurantId = Soupaurant.Restaurant_id
             };
 
             Guest JH = new Guest()
@@ -128,7 +125,7 @@ namespace ZC7ADM_HFT_2021221.Data
                 //Employee = SoupKirk,
                 DeliveredFood = MeatSoup,
                 GuestId = 4,
-                //OrderId = SoupKirk.EmployeeId
+                OrderId = SoupKirk.EmployeeId
             };
 
             Guest LU = new Guest()
@@ -139,7 +136,7 @@ namespace ZC7ADM_HFT_2021221.Data
                 //Employee = SoupKirk,
                 DeliveredFood = GulyasSoup,
                 GuestId = 3,
-                //OrderId = SoupKirk.EmployeeId
+                OrderId = SoupKirk.EmployeeId
             };
 
             Guest SG = new Guest()
@@ -150,7 +147,7 @@ namespace ZC7ADM_HFT_2021221.Data
                // Employee = ItalianoMario,
                 DeliveredFood = Pizza,
                 GuestId = 2,
-                //OrderId = ItalianoMario.EmployeeId
+                OrderId = ItalianoMario.EmployeeId
             };
 
             Guest MS = new Guest()
@@ -161,7 +158,7 @@ namespace ZC7ADM_HFT_2021221.Data
                 //Employee = ItalianoBob,
                 DeliveredFood = Pasta,
                 GuestId = 1,
-                //OrderId = ItalianoBob.EmployeeId
+                OrderId = ItalianoBob.EmployeeId
             };
 
             #endregion
