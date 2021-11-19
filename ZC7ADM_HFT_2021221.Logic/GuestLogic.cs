@@ -48,5 +48,10 @@ namespace ZC7ADM_HFT_2021221.Logic
         {
             return guestRepo.ReadAll().Where(x => x.Employee.Restaurant.RestaurantName.Equals("Italiano")).Select(g => g.Name);
         }
+
+        public IEnumerable<Guest> KirksGuests() 
+        {
+            return guestRepo.ReadAll().Where(x => x.Employee.Name == "Kirk").Select(x=>x);        
+        }
     }
 }

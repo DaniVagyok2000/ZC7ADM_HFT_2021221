@@ -32,5 +32,16 @@ namespace ZC7ADM_HFT_2021221.Models
             Guests = new HashSet<Guest>();
         }
 
+        public override bool Equals(object obj)
+        {
+
+            return this.GetHashCode() == obj.GetHashCode();
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Name.Length * this.RestaurantId * this.Salary;
+        }
     }
+
 }

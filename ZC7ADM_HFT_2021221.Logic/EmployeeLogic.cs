@@ -18,6 +18,10 @@ namespace ZC7ADM_HFT_2021221.Logic
 
         public void Create(Employee e)
         {
+            if (e.Name=="")
+            {
+                throw new ArgumentNullException("Name property must be filled!");
+            }
             empRepo.Create(e);
         }
 
@@ -42,12 +46,18 @@ namespace ZC7ADM_HFT_2021221.Logic
 
         //non-crud mothods
 
-        public Employee HadMoreThanTwoGuest()
+        public IEnumerable<Employee> HadMoreThanOneGuest()
         {
-            return (Employee)from x in empRepo.ReadAll()
-                             where x.Guests.Count > 2
-                             select x;
+            return from x in empRepo.ReadAll()
+                   where x.Guests.Count > 1
+                   select x;
         }
 
+        public IEnumerable<Employee> ThreeStarsOrHigherRatedRestaurantWorkers() 
+        {
+            return from x in empRepo.ReadAll()
+                   where x.Restaurant.Rating > 3
+                   select x;       
+        }
     }
 }

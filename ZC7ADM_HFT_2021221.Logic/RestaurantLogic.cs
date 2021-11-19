@@ -50,8 +50,8 @@ namespace ZC7ADM_HFT_2021221.Logic
         public IEnumerable<KeyValuePair<string, double>> AVGFoodPriceByRestaurant()
         {
             return from x in restRepo.ReadAll()
-                   group x by x.RestaurantName into g
-                   select new KeyValuePair<string, double>(g.Key, g.Average(a => a.Foodlist.Average(p => p.Price)));
+                   group x by x into g
+                   select new KeyValuePair<string, double>(g.Key.RestaurantName, g.Key.Foodlist.Average(p => p.Price));
         }
 
     }

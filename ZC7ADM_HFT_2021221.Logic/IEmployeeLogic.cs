@@ -7,7 +7,7 @@ namespace ZC7ADM_HFT_2021221.Logic
     {
         void Create(Employee e);
         void Delete(int id);
-        Employee HadMoreThanTwoGuest();
+        IEnumerable<Employee> HadMoreThanOneGuest();
         Employee Read(int id);
         IEnumerable<Employee> ReadAll();
         void Update(Employee e);
