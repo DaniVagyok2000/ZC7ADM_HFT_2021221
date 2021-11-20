@@ -107,7 +107,7 @@ namespace ZC7ADM_HFT_2021221.Test
                 EmployeeId = 4,
                 Name = "Kirk",
                 Salary = 350000,
-                RestaurantId = Soupaurant.Restaurant_id
+                RestaurantId = Soupaurant.Restaurant_id,
             };
 
             Guest JH = new Guest()
@@ -153,6 +153,18 @@ namespace ZC7ADM_HFT_2021221.Test
                 GuestId = 1,
                 OrderId = ItalianoBob.EmployeeId
             };
+
+            SoupKirk.Guests.Add(JH);
+            SoupKirk.Guests.Add(LU);
+
+            ItalianoBob.Guests.Add(SG);
+            ItalianoMario.Guests.Add(MS);
+
+            Soupaurant.Employees.Add(SoupKirk);
+            Soupaurant.Employees.Add(SoupDan);
+
+            Italiano.Employees.Add(ItalianoMario);
+            Italiano.Employees.Add(ItalianoBob);
 
             emps.Add(SoupKirk);
             emps.Add(SoupDan);
@@ -208,13 +220,17 @@ namespace ZC7ADM_HFT_2021221.Test
         
         }
 
+        [Test]
         public void AVGFoodPriceByRestaurantTest() 
         {
             var prices=rLogic.AVGFoodPriceByRestaurant().ToArray();
+
+            var soupprice = rLogic.ReadAll().Where(x => x.RestaurantName.Equals("Soupaurant")).Select(x => x.Foodlist.Average(a => a.Price)).ToArray();
+            var italianoprice = rLogic.ReadAll().Where(x => x.RestaurantName.Equals("Italiano")).Select(x => x.Foodlist.Average(a => a.Price)).ToArray();
+            ;                
+            Assert.That((double)prices[0].Value,Is.EqualTo(italianoprice[0]));
+            Assert.That((double)prices[1].Value,Is.EqualTo(soupprice[0]));
             ;
-            //Assert.That();
-            //Assert.That();
-            //Assert.That();
         }
 
 
