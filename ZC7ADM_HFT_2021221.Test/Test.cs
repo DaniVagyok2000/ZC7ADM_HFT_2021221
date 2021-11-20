@@ -99,7 +99,8 @@ namespace ZC7ADM_HFT_2021221.Test
                 EmployeeId = 3,
                 Name = "Dan",
                 Salary = 300000,
-                RestaurantId = Soupaurant.Restaurant_id
+                RestaurantId = Soupaurant.Restaurant_id,
+                Restaurant=Soupaurant
             };
 
             Employee SoupKirk = new Employee()
@@ -108,6 +109,7 @@ namespace ZC7ADM_HFT_2021221.Test
                 Name = "Kirk",
                 Salary = 350000,
                 RestaurantId = Soupaurant.Restaurant_id,
+                Restaurant=Soupaurant
             };
 
             Guest JH = new Guest()
@@ -191,8 +193,8 @@ namespace ZC7ADM_HFT_2021221.Test
 
             mockEmployeeRepo.Setup(e => e.ReadAll()).Returns(employees);
             mockRestaurantRepo.Setup(r => r.ReadAll()).Returns(restaurants);
-            mockGuestRepo.Setup(g=>g.ReadAll()).Returns((IQueryable<Guest>)guests);
-
+            mockGuestRepo.Setup(g=>g.ReadAll()).Returns(guests);
+            ;
             eLogic = new EmployeeLogic(mockEmployeeRepo.Object);
             rLogic = new RestaurantLogic(mockRestaurantRepo.Object);
             gLogic = new GuestLogic(mockGuestRepo.Object);
@@ -227,12 +229,32 @@ namespace ZC7ADM_HFT_2021221.Test
 
             var soupprice = rLogic.ReadAll().Where(x => x.RestaurantName.Equals("Soupaurant")).Select(x => x.Foodlist.Average(a => a.Price)).ToArray();
             var italianoprice = rLogic.ReadAll().Where(x => x.RestaurantName.Equals("Italiano")).Select(x => x.Foodlist.Average(a => a.Price)).ToArray();
-            ;                
+                            
             Assert.That((double)prices[0].Value,Is.EqualTo(italianoprice[0]));
             Assert.That((double)prices[1].Value,Is.EqualTo(soupprice[0]));
-            ;
+            
         }
 
+        [Test]
+        public void ItalianoGuestsName() 
+        {
+            var names = gLogic.ItalianoGuestNames().ToArray();
+
+            Assert.That(names[0],Is.EqualTo("Synyster Gates"));
+            Assert.That(names[1],Is.EqualTo("Matt Shadows"));
+
+        
+        }
+
+        [Test]
+        public void KirksGuestsTest() 
+        {
+            var guests = gLogic.KirksGuests().ToArray();
+            
+            Assert.That(guests[0].Name, Is.EqualTo("James Hetfield")) ;
+            Assert.That(guests[1].Name, Is.EqualTo("Lars Ulrich")) ;
+            
+        }
 
 
     }
