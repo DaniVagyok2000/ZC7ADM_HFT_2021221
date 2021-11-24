@@ -256,6 +256,27 @@ namespace ZC7ADM_HFT_2021221.Test
             
         }
 
+        [Test]
+        public void ThreeStarsOrHigherRatedRestaurantWorkersTest() 
+        {
+            var employees = eLogic.ThreeStarsOrHigherRatedRestaurantWorkers().ToArray();
+            
+            Assert.That(employees[0].Name,Is.EqualTo("Kirk"));
+            Assert.That(employees[1].Name,Is.EqualTo("Dan"));
+            Assert.That(employees[2].Name,Is.EqualTo("Bob"));
+            Assert.That(employees[3].Name,Is.EqualTo("Mario"));
+        }
+
+        [Test]
+        public void EmployeeCreateMethodTest() 
+        {
+            Employee e = new Employee();
+            e.Salary = 1000;
+
+            //Assert.Throws(new ArgumentNullException());
+        
+        }
+
 
     }
 }
