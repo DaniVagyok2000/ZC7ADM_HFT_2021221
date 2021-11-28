@@ -37,20 +37,23 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Employee value)
         {
+            eLogic.Create(value);
         }
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put([FromBody] Employee value)
         {
+            eLogic.Update(value);
         }
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            eLogic.Delete(id);
         }
     }
 }
