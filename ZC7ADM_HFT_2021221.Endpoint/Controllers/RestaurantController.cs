@@ -40,20 +40,21 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
         [HttpPost]
         public void Post([FromBody] Restaurant value)
         {
-
-
+            rl.Create(value);
         }
 
         // PUT api/<RestaurantController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put([FromBody] Restaurant value)
         {
+            rl.Update(value);
         }
 
         // DELETE api/<RestaurantController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            rl.Delete(id);
         }
     }
 }

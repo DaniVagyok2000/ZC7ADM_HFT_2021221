@@ -8,6 +8,7 @@ namespace ZC7ADM_HFT_2021221.Logic
         void Create(Employee e);
         void Delete(int id);
         IEnumerable<Employee> HadMoreThanOneGuest();
+        IEnumerable<Employee> ThreeStarsOrHigherRatedRestaurantWorkers();
         Employee Read(int id);
         IEnumerable<Employee> ReadAll();
         void Update(Employee e);
