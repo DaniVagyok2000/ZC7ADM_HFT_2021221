@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ZC7ADM_HFT_2021221.Models
@@ -14,6 +15,7 @@ namespace ZC7ADM_HFT_2021221.Models
         [Required]
         public string Name { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual Employee Employee { get; set; }
         [EmailAddress]
         public string Email { get; set; }        
@@ -25,6 +27,7 @@ namespace ZC7ADM_HFT_2021221.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
         [NotMapped]
+        
         public Food DeliveredFood { get; set; }
 
     }

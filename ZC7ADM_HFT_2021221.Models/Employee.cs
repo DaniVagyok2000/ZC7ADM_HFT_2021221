@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ZC7ADM_HFT_2021221.Models
@@ -12,6 +13,7 @@ namespace ZC7ADM_HFT_2021221.Models
     public class Employee
     {
         [NotMapped]
+        [JsonIgnore]
         public virtual Restaurant Restaurant { get; set; }
         [Required]
         public string Name { get; set; }
