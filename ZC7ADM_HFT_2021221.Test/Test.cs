@@ -70,7 +70,7 @@ namespace ZC7ADM_HFT_2021221.Test
                 Restaurant_id = 2,
                 RestaurantName = "Italiano",
                 Foodlist = new List<Food>(),
-                Rating = 5,                
+                Rating = 5,
             };
 
             Italiano.Foodlist.Add(Pizza);
@@ -100,7 +100,7 @@ namespace ZC7ADM_HFT_2021221.Test
                 Name = "Dan",
                 Salary = 300000,
                 RestaurantId = Soupaurant.Restaurant_id,
-                Restaurant=Soupaurant
+                Restaurant = Soupaurant
             };
 
             Employee SoupKirk = new Employee()
@@ -109,7 +109,7 @@ namespace ZC7ADM_HFT_2021221.Test
                 Name = "Kirk",
                 Salary = 350000,
                 RestaurantId = Soupaurant.Restaurant_id,
-                Restaurant=Soupaurant
+                Restaurant = Soupaurant
             };
 
             Guest JH = new Guest()
@@ -139,7 +139,7 @@ namespace ZC7ADM_HFT_2021221.Test
                 Name = "Synyster Gates",
                 Number = "06 20 123 4432",
                 Email = "avengedsevenfold.synister.gates@gmail.com",
-                 Employee = ItalianoMario,
+                Employee = ItalianoMario,
                 DeliveredFood = Pizza,
                 GuestId = 2,
                 OrderId = ItalianoMario.EmployeeId
@@ -183,7 +183,7 @@ namespace ZC7ADM_HFT_2021221.Test
 
             #endregion
 
-            employees=emps.AsQueryable();
+            employees = emps.AsQueryable();
             restaurants = res.AsQueryable();
             guests = gue.AsQueryable();
 
@@ -193,14 +193,14 @@ namespace ZC7ADM_HFT_2021221.Test
 
             mockEmployeeRepo.Setup(e => e.ReadAll()).Returns(employees);
             mockRestaurantRepo.Setup(r => r.ReadAll()).Returns(restaurants);
-            mockGuestRepo.Setup(g=>g.ReadAll()).Returns(guests);
+            mockGuestRepo.Setup(g => g.ReadAll()).Returns(guests);
             ;
             eLogic = new EmployeeLogic(mockEmployeeRepo.Object);
             rLogic = new RestaurantLogic(mockRestaurantRepo.Object);
             gLogic = new GuestLogic(mockGuestRepo.Object);
         }
         [Test]
-        public void DBHasData() 
+        public void DBHasData()
         {
             RestaurantDbContext db = new RestaurantDbContext();
 
@@ -208,75 +208,100 @@ namespace ZC7ADM_HFT_2021221.Test
             var e = db.Employees.ToArray();
             var g = db.Guests.ToArray();
 
-            Assert.That(e,Is.Not.Null);
-            Assert.That(r,Is.Not.Null);
-            Assert.That(g,Is.Not.Null);
+            Assert.That(e, Is.Not.Null);
+            Assert.That(r, Is.Not.Null);
+            Assert.That(g, Is.Not.Null);
         }
 
         [Test]
-        public void HadMoreThanOneGuestTest() 
+        public void HadMoreThanOneGuestTest()
         {
             var employee = eLogic.HadMoreThanOneGuest().ToArray();
 
             Assert.That(employee[0].Name, Is.EqualTo("Kirk"));
-        
+
         }
 
         [Test]
-        public void AVGFoodPriceByRestaurantTest() 
+        public void AVGFoodPriceByRestaurantTest()
         {
-            var prices=rLogic.AVGFoodPriceByRestaurant().ToArray();
+            var prices = rLogic.AVGFoodPriceByRestaurant().ToArray();
 
             var soupprice = rLogic.ReadAll().Where(x => x.RestaurantName.Equals("Soupaurant")).Select(x => x.Foodlist.Average(a => a.Price)).ToArray();
             var italianoprice = rLogic.ReadAll().Where(x => x.RestaurantName.Equals("Italiano")).Select(x => x.Foodlist.Average(a => a.Price)).ToArray();
-                            
-            Assert.That((double)prices[0].Value,Is.EqualTo(italianoprice[0]));
-            Assert.That((double)prices[1].Value,Is.EqualTo(soupprice[0]));
-            
+
+            Assert.That((double)prices[0].Value, Is.EqualTo(italianoprice[0]));
+            Assert.That((double)prices[1].Value, Is.EqualTo(soupprice[0]));
+
         }
 
         [Test]
-        public void ItalianoGuestsName() 
+        public void ItalianoGuestsName()
         {
             var names = gLogic.ItalianoGuestNames().ToArray();
 
-            Assert.That(names[0],Is.EqualTo("Synyster Gates"));
-            Assert.That(names[1],Is.EqualTo("Matt Shadows"));
+            Assert.That(names[0], Is.EqualTo("Synyster Gates"));
+            Assert.That(names[1], Is.EqualTo("Matt Shadows"));
 
-        
+
         }
 
         [Test]
-        public void KirksGuestsTest() 
+        public void KirksGuestsTest()
         {
             var guests = gLogic.KirksGuests().ToArray();
-            
-            Assert.That(guests[0].Name, Is.EqualTo("James Hetfield")) ;
-            Assert.That(guests[1].Name, Is.EqualTo("Lars Ulrich")) ;
-            
+
+            Assert.That(guests[0].Name, Is.EqualTo("James Hetfield"));
+            Assert.That(guests[1].Name, Is.EqualTo("Lars Ulrich"));
+
         }
 
         [Test]
-        public void ThreeStarsOrHigherRatedRestaurantWorkersTest() 
+        public void ThreeStarsOrHigherRatedRestaurantWorkersTest()
         {
             var employees = eLogic.ThreeStarsOrHigherRatedRestaurantWorkers().ToArray();
-            
-            Assert.That(employees[0].Name,Is.EqualTo("Kirk"));
-            Assert.That(employees[1].Name,Is.EqualTo("Dan"));
-            Assert.That(employees[2].Name,Is.EqualTo("Bob"));
-            Assert.That(employees[3].Name,Is.EqualTo("Mario"));
+
+            Assert.That(employees[0].Name, Is.EqualTo("Kirk"));
+            Assert.That(employees[1].Name, Is.EqualTo("Dan"));
+            Assert.That(employees[2].Name, Is.EqualTo("Bob"));
+            Assert.That(employees[3].Name, Is.EqualTo("Mario"));
         }
 
+
+
         [Test]
-        public void EmployeeCreateMethodTest() 
+        public void EmployeeCreateMethodTest()
         {
             Employee e = new Employee();
             e.Salary = 1000;
 
-            //Assert.Throws(new ArgumentNullException());
-        
+            Assert.That(() => eLogic.Create(e), Throws.Exception);
+        }
+        [Test]
+        public void GuestCreateMethodTest()
+        {
+            Guest g = new Guest();
+            g.Email = "Bob@hotmail.com";
+
+            Assert.That(() => gLogic.Create(g), Throws.Exception);
+        }
+        [Test]
+        public void RestaurantCreateMethodTest()
+        {
+            Restaurant r = new Restaurant();
+            r.Rating = 3;
+
+            Assert.That(() => rLogic.Create(r), Throws.Exception);
         }
 
-
+        [Test]
+        public void EmployeeReadTest() 
+        {
+            var read = eLogic.Read(1);
+            var first = eLogic.ReadAll().Where(x=>x.EmployeeId.Equals(1)).Select(x=>x);
+            ;
+            Assert.That(read,Is.EqualTo(first));
+        } 
+        
     }
 }

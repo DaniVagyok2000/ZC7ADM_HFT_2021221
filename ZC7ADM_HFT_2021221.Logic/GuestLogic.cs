@@ -19,6 +19,10 @@ namespace ZC7ADM_HFT_2021221.Logic
 
         public void Create(Guest guest)
         {
+            if (guest.Name==null)
+            {
+                throw new ArgumentNullException("A guest must have a name!");
+            }
             guestRepo.Create(guest);
         }
 

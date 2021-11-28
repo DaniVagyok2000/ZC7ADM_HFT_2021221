@@ -18,7 +18,7 @@ namespace ZC7ADM_HFT_2021221.Logic
 
         public void Create(Employee e)
         {
-            if (e.Name=="")
+            if (e.Name== null)
             {
                 throw new ArgumentNullException("Name property must be filled!");
             }

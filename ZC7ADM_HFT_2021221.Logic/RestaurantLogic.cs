@@ -19,7 +19,7 @@ namespace ZC7ADM_HFT_2021221.Logic
 
         public void Create(Restaurant rest)
         {
-            if (rest.RestaurantName == "")
+            if (rest.RestaurantName == null)
             {
                 throw new ArgumentNullException("A restaurant must have a name!");
             }
