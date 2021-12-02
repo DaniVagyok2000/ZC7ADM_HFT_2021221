@@ -97,13 +97,13 @@ namespace ZC7ADM_HFT_2021221.Client
             Console.ReadLine();
 
         }
-        public static void AVGFoodPriceByRestaurantDisplayer(RestService rest)
+        public static void RestaurantWorkerAVGSalaryMax(RestService rest)
         {
-            var avg = rest.Get<KeyValuePair<string, double>>("/stat/AVGFoodPriceByRestaurant");
+            var avg = rest.Get<int>("/stat/RestaurantWorkerAVGSalaryMax");
+            Console.WriteLine("Max Salaries are: ");
             foreach (var item in avg)
             {
-                Console.WriteLine("Restaurant: " + item.Key);
-                Console.WriteLine("Average food price: " + item.Value);
+                Console.WriteLine("Salary: " + item);
             }
             Console.WriteLine("Press any key to return to menu!");
             Console.ReadLine();

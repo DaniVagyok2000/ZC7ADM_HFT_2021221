@@ -54,9 +54,9 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
 
         // /stat/...
         [HttpGet]
-        public IEnumerable<KeyValuePair<string, double>> RestaurantWorkerAVGSalary()
+        public IEnumerable<int> RestaurantWorkerAVGSalaryMax()
         {
-            return rl.RestaurantWorkerAVGSalary();
+            return rl.RestaurantWorkerAVGSalaryMax();
         }
 
     }

@@ -5,7 +5,7 @@ namespace ZC7ADM_HFT_2021221.Logic
 {
     public interface IRestaurantLogic
     {
-        IEnumerable<KeyValuePair<string, double>> RestaurantWorkerAVGSalary();
+        IEnumerable<int> RestaurantWorkerAVGSalaryMax();
         void Create(Restaurant rest);
         void Delete(int id);
         Restaurant Read(int id);

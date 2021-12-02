@@ -47,11 +47,9 @@ namespace ZC7ADM_HFT_2021221.Logic
 
         //non-crud methods
 
-        public IEnumerable<KeyValuePair<string, double>> RestaurantWorkerAVGSalary()
+        public IEnumerable<int> RestaurantWorkerAVGSalaryMax()
         {
-            return from x in restRepo.ReadAll()
-                   group x by x into g
-                   select new KeyValuePair<string, double>(g.Key.RestaurantName,g.Key.Employees.Average(e=>e.Salary));
+            return restRepo.ReadAll().Select(x=>x.Employees.Max(m=>m.Salary));                   
         }
 
     }

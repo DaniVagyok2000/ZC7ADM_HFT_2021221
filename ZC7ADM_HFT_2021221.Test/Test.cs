@@ -223,15 +223,16 @@ namespace ZC7ADM_HFT_2021221.Test
         }
 
         [Test]
-        public void RestaurantWorkerAVGSalaryTest()
+        public void RestaurantWorkerAVGSalaryMaxTest()
         {
-            var prices = rLogic.RestaurantWorkerAVGSalary().ToArray();
+            var prices = rLogic.RestaurantWorkerAVGSalaryMax().ToArray();
 
-            var soupprice =rLogic.ReadAll().Where(r => r.RestaurantName.Equals("Soupaurant")).Select(x => x.Employees.Average(a => a.Salary)).ToArray();
-            var italianoprice =rLogic.ReadAll().Where(r => r.RestaurantName.Equals("Italiano")).Select(x => x.Employees.Average(a => a.Salary)).ToArray();
+            var soupprice= rLogic.ReadAll().Where(x => x.RestaurantName.Equals("Soupaurant")).Select(m => m.Employees.Max(s => s.Salary)).ToArray();
+            var ital = rLogic.ReadAll().Where(x => x.RestaurantName.Equals("Italiano")).Select(m=>m.Employees.Max(s=>s.Salary)).ToArray();
 
-            Assert.That((int)prices[0].Value, Is.EqualTo(italianoprice[0]));
-            Assert.That((int)prices[1].Value, Is.EqualTo(soupprice[0]));
+
+            Assert.That(prices[1], Is.EqualTo(soupprice[0]));
+            Assert.That(prices[0], Is.EqualTo(ital[0]));
 
         }
 
