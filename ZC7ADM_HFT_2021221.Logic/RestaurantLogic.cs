@@ -47,11 +47,11 @@ namespace ZC7ADM_HFT_2021221.Logic
 
         //non-crud methods
 
-        public IEnumerable<KeyValuePair<string, double>> AVGFoodPriceByRestaurant()
+        public IEnumerable<KeyValuePair<string, double>> RestaurantWorkerAVGSalary()
         {
             return from x in restRepo.ReadAll()
                    group x by x into g
-                   select new KeyValuePair<string, double>(g.Key.RestaurantName, g.Key.Foodlist.Average(p => p.Price));
+                   select new KeyValuePair<string, double>(g.Key.RestaurantName,g.Key.Employees.Average(e=>e.Salary));
         }
 
     }

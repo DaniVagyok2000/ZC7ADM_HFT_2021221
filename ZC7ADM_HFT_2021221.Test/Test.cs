@@ -62,8 +62,8 @@ namespace ZC7ADM_HFT_2021221.Test
                 Rating = 4
             };
 
-            Soupaurant.Foodlist.Add(GulyasSoup);
-            Soupaurant.Foodlist.Add(MeatSoup);
+            Soupaurant.Foodlist.ToList().Add(GulyasSoup);
+            Soupaurant.Foodlist.ToList().Add(MeatSoup);
 
             Restaurant Italiano = new Restaurant()
             {
@@ -73,8 +73,8 @@ namespace ZC7ADM_HFT_2021221.Test
                 Rating = 5,
             };
 
-            Italiano.Foodlist.Add(Pizza);
-            Italiano.Foodlist.Add(Pasta);
+            Italiano.Foodlist.ToList().Add(Pizza);
+            Italiano.Foodlist.ToList().Add(Pasta);
 
             Employee ItalianoBob = new Employee()
             {
@@ -223,15 +223,15 @@ namespace ZC7ADM_HFT_2021221.Test
         }
 
         [Test]
-        public void AVGFoodPriceByRestaurantTest()
+        public void RestaurantWorkerAVGSalaryTest()
         {
-            var prices = rLogic.AVGFoodPriceByRestaurant().ToArray();
+            var prices = rLogic.RestaurantWorkerAVGSalary().ToArray();
 
-            var soupprice = rLogic.ReadAll().Where(x => x.RestaurantName.Equals("Soupaurant")).Select(x => x.Foodlist.Average(a => a.Price)).ToArray();
-            var italianoprice = rLogic.ReadAll().Where(x => x.RestaurantName.Equals("Italiano")).Select(x => x.Foodlist.Average(a => a.Price)).ToArray();
+            var soupprice =rLogic.ReadAll().Where(r => r.RestaurantName.Equals("Soupaurant")).Select(x => x.Employees.Average(a => a.Salary)).ToArray();
+            var italianoprice =rLogic.ReadAll().Where(r => r.RestaurantName.Equals("Italiano")).Select(x => x.Employees.Average(a => a.Salary)).ToArray();
 
-            Assert.That((double)prices[0].Value, Is.EqualTo(italianoprice[0]));
-            Assert.That((double)prices[1].Value, Is.EqualTo(soupprice[0]));
+            Assert.That((int)prices[0].Value, Is.EqualTo(italianoprice[0]));
+            Assert.That((int)prices[1].Value, Is.EqualTo(soupprice[0]));
 
         }
 

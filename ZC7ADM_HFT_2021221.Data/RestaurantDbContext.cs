@@ -65,7 +65,7 @@ namespace ZC7ADM_HFT_2021221.Data
             {
                 Restaurant_id = 1,
                 RestaurantName = "Soupaurant",
-                Rating = 4
+                Rating = 4,
             };
 
             Soupaurant.Foodlist.Add(GulyasSoup);

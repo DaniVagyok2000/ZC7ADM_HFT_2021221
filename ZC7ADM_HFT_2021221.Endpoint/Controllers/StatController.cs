@@ -52,11 +52,11 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
             return gl.KirksGuests();
         }
 
-        // /stat/AVGFoodPriceByRestaurant
+        // /stat/...
         [HttpGet]
-        public IEnumerable<KeyValuePair<string, double>> AVGFoodPriceByRestaurant()
+        public IEnumerable<KeyValuePair<string, double>> RestaurantWorkerAVGSalary()
         {
-            return rl.AVGFoodPriceByRestaurant();
+            return rl.RestaurantWorkerAVGSalary();
         }
 
     }

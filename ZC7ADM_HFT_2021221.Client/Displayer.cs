@@ -230,7 +230,7 @@ namespace ZC7ADM_HFT_2021221.Client
                     f.Name = Console.ReadLine();
                     Console.WriteLine("Insert Food's price");
                     f.Price = int.Parse(Console.ReadLine());
-                    r.Foodlist.Add(f);
+                    r.Foodlist.ToList().Add(f);
                 }
             }
 
