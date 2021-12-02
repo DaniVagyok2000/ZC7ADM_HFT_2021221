@@ -17,7 +17,6 @@ namespace ZC7ADM_HFT_2021221.Models
         [NotMapped]
         [JsonIgnore]
         public virtual Employee Employee { get; set; }
-        [EmailAddress]
         public string Email { get; set; }        
         public string Number { get; set; }
         [Key]
