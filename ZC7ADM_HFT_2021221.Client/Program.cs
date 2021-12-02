@@ -25,7 +25,7 @@ namespace ZC7ADM_HFT_2021221.Client
             menu.Add("Displays Employee Kirk's Guests", () => Displayer.KirsksGuestsDisplayer(rest));
             menu.Add("Displays Employees who had more than one Guest", () => Displayer.HadMoreThanOneGuestDisplayer(rest));
             menu.Add("Displays Restaurant workers who work in a restaurant that has 3 or higher rating", () => Displayer.ThreeStarsOrHigherRatedRestaurantWorkersDisplayer(rest));
-            menu.Add("Displays Max Average salary by Restaurants", () => Displayer.RestaurantWorkerAVGSalaryMax(rest));
+            menu.Add("Displays Max salary by Restaurants", () => Displayer.RestaurantWorkerAVGSalaryMax(rest));
             menu.Add("Displays Guests in Italiano restaurant", () => Displayer.ItalianoGuestNamesDisplayer(rest));
             //Create
             menu.Add("Create a new Employee", () => Displayer.CreateEmployeeMethod(rest));
