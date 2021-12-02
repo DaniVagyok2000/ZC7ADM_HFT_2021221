@@ -1,6 +1,6 @@
 ﻿using System;
-using ZC7ADM_HFT_2021221.Data;
 using System.Linq;
+using ConsoleTools;
 
 namespace ZC7ADM_HFT_2021221.Client
 {
@@ -8,6 +8,7 @@ namespace ZC7ADM_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
+
             
         }
     }

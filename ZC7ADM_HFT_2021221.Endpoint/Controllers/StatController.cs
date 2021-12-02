@@ -25,27 +25,35 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
         }
 
         // /stat/hadmoretahoneguest
+        [HttpGet]
         public IEnumerable<Employee> HadMoreThanOneGuest()
         {
             return el.HadMoreThanOneGuest();
         }
 
         // /stat/ThreeStarsOrHigherRatedRestaurantWorkers
+        [HttpGet]
         public IEnumerable<Employee> ThreeStarsOrHigherRatedRestaurantWorkers()
         {
             return el.ThreeStarsOrHigherRatedRestaurantWorkers();
         }
 
+        // /stat/italianoguestnames
+        [HttpGet]
         public IEnumerable<string> ItalianoGuestNames()
         {
             return gl.ItalianoGuestNames();
         }
         
+        // /stat/kirksguests
+        [HttpGet]
         public IEnumerable<Guest> KirksGuests()
         {
             return gl.KirksGuests();
         }
 
+        // /stat/AVGFoodPriceByRestaurant
+        [HttpGet]
         public IEnumerable<KeyValuePair<string, double>> AVGFoodPriceByRestaurant()
         {
             return rl.AVGFoodPriceByRestaurant();

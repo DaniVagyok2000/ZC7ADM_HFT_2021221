@@ -17,7 +17,7 @@ namespace ZC7ADM_HFT_2021221.Models
         public string RestaurantName { get; set; }
         [Required]
         [NotMapped]
-        public virtual List<Food> Foodlist  { get; set; }
+        public List<Food> Foodlist  { get; set; }
         
         public int Rating { get; set; }
         [Key]
@@ -28,6 +28,7 @@ namespace ZC7ADM_HFT_2021221.Models
 
         public Restaurant()
         {
+            Foodlist = new List<Food>();
             Employees = new HashSet<Employee>();
         }
 

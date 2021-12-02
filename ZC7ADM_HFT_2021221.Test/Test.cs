@@ -295,13 +295,18 @@ namespace ZC7ADM_HFT_2021221.Test
         }
 
         [Test]
-        public void EmployeeReadTest() 
+        public void DatabaseConnectionsWorking()
         {
-            var read = eLogic.Read(1);
-            var first = eLogic.ReadAll().Where(x=>x.EmployeeId.Equals(1)).Select(x=>x);
-            ;
-            Assert.That(read,Is.EqualTo(first));
-        } 
-        
+            var FromRestaurantToEmployee = rLogic.ReadAll().Select(x => x.Employees).ToArray();
+            var FromEmployeeToGuests = eLogic.ReadAll().Select(x => x.Guests).ToArray();
+            var FromGuestsToEmployee = gLogic.ReadAll().Select(x => x.Employee.Name).ToArray();
+
+            Assert.That(FromRestaurantToEmployee[0].Count, Is.EqualTo(2));
+            Assert.That(FromEmployeeToGuests[1].Count, Is.EqualTo(0));
+            Assert.That(FromGuestsToEmployee[0], Is.EqualTo("Kirk"));
+
+
+        }
+
     }
 }
