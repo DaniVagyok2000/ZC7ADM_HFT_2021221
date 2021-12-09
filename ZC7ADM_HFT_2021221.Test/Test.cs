@@ -202,6 +202,7 @@ namespace ZC7ADM_HFT_2021221.Test
         [Test]
         public void EmployeeUpdateMethodTest()
         {
+            //Testing what happens if you don't give a value to e.employeeId(There's no employee who has 0 as his employeeId)
             Employee e = new Employee();
             e.Salary = 1000;
 
