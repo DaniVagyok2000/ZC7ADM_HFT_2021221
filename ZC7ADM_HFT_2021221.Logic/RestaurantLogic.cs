@@ -42,6 +42,10 @@ namespace ZC7ADM_HFT_2021221.Logic
 
         public void Update(Restaurant rest)
         {
+            if (rest.Restaurant_id==0||rest.RestaurantName==null)
+            {
+                throw new ArgumentNullException("RestaurantId or Restaurant name must be set!");
+            }
             restRepo.Update(rest);
         }
 

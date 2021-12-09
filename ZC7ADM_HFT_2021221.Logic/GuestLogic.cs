@@ -42,6 +42,10 @@ namespace ZC7ADM_HFT_2021221.Logic
 
         public void Update(Guest guest)
         {
+            if (guest.GuestId==0)
+            {
+                throw new ArgumentNullException("GuestId cann't be null or zero!");
+            }
             guestRepo.Update(guest);
         }
 

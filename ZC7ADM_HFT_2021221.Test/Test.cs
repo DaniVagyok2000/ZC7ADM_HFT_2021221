@@ -200,17 +200,30 @@ namespace ZC7ADM_HFT_2021221.Test
             gLogic = new GuestLogic(mockGuestRepo.Object);
         }
         [Test]
-        public void DBHasData()
+        public void EmployeeUpdateMethodTest()
         {
-            RestaurantDbContext db = new RestaurantDbContext();
+            Employee e = new Employee();
+            e.Salary = 1000;
 
-            var r = db.Restaurants.ToArray();
-            var e = db.Employees.ToArray();
-            var g = db.Guests.ToArray();
+            Assert.That(() => eLogic.Update(e), Throws.Exception);
+        }
 
-            Assert.That(e, Is.Not.Null);
-            Assert.That(r, Is.Not.Null);
-            Assert.That(g, Is.Not.Null);
+        [Test]
+        public void GuestUpdateMethodTest()
+        {
+            Guest g = new Guest();
+            g.Number = "062044121221";
+
+            Assert.That(() => gLogic.Update(g), Throws.Exception);
+        }
+
+        [Test]
+        public void RestaurantUpdateMethodTest()
+        {
+            Restaurant r = new Restaurant();
+            r.Rating =1;
+
+            Assert.That(() => rLogic.Update(r), Throws.Exception);
         }
 
         [Test]

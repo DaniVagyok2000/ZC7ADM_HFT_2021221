@@ -41,6 +41,10 @@ namespace ZC7ADM_HFT_2021221.Logic
 
         public void Update(Employee e)
         {
+            if (e.EmployeeId==0 ||e.Name==null)
+            {
+                throw new ArgumentNullException("Name or EmployeeId must be set!");
+            }
             empRepo.Update(e);
         }
 
