@@ -30,11 +30,11 @@ namespace ZC7ADM_HFT_2021221.Data
             modelBuilder.Entity<Employee>()
             .HasMany(g => g.Guests)
             .WithOne(r => r.Employee)
-            .OnDelete(DeleteBehavior.ClientSetNull);
+            .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Restaurant>()
                 .HasMany(e=>e.Employees)
                 .WithOne(r=>r.Restaurant)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             #region filling database with datas

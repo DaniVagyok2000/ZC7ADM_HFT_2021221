@@ -22,6 +22,7 @@ namespace ZC7ADM_HFT_2021221.WPFClient
     {
         public MainWindow()
         {
+            System.Threading.Thread.Sleep(10000);
             InitializeComponent();
         }
     }
