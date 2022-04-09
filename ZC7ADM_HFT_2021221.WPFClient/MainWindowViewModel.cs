@@ -29,9 +29,9 @@ namespace ZC7ADM_HFT_2021221.WPFClient
                         Name = value.Name,
                         EmployeeId = value.EmployeeId,
                         Salary = value.Salary,
-                        Guests=value.Guests,
-                        Restaurant=new Restaurant() {RestaurantName="ASD" },
-                        RestaurantId=value.RestaurantId                        
+                        Guests = value.Guests,
+                        Restaurant = new Restaurant() { RestaurantName = "ASD" },
+                        RestaurantId = value.RestaurantId
                     };
                     OnPropertyChanged();
                     (DeleteEmployee as RelayCommand).NotifyCanExecuteChanged();
@@ -81,6 +81,44 @@ namespace ZC7ADM_HFT_2021221.WPFClient
 
         #endregion
 
+        #region Guests
+
+        public RestCollection<Guest> Guests { get; set; }
+
+        private Guest selectedGuest;
+
+        public Guest SelectedGuest
+        {
+            get { return selectedGuest; }
+            set
+            {
+                if (value != null)
+                {
+                    selectedGuest = new Guest()
+                    {
+                        DeliveredFood = value.DeliveredFood,
+                        Email = value.Email,
+                        Employee = value.Employee,
+                        GuestId = value.GuestId,
+                        Name = value.Name,
+                        Number = value.Number,
+                        OrderId = value.OrderId
+                    };
+                    OnPropertyChanged();
+                    (DeleteGuest as RelayCommand).NotifyCanExecuteChanged();
+                    //(UpdateEmployee as RelayCommand).NotifyCanExecuteChanged();
+                }
+            }
+        }
+
+        public ICommand CreateGuest { get; set; }
+        public ICommand DeleteGuest { get; set; }
+        public ICommand UpdateGuest { get; set; }
+
+
+
+        #endregion
+
         public MainWindowViewModel()
         {
             #region Seting up Employees
@@ -98,14 +136,14 @@ namespace ZC7ADM_HFT_2021221.WPFClient
             Employees.Delete(SelectedEmployee.EmployeeId),
             () => { return SelectedEmployee != null; }
             );
-            UpdateEmployee = new RelayCommand(()=> 
+            UpdateEmployee = new RelayCommand(() =>
             Employees.Update(SelectedEmployee)
             );
             #endregion
 
             #region Setting up Restaurants
 
-            Restaurants = new RestCollection<Restaurant>("http://localhost:31877/", "employee");
+            Restaurants = new RestCollection<Restaurant>("http://localhost:31877/", "restaurant");
             CreateRestaurant = new RelayCommand(() =>
             {
                 Restaurants.Add(new Restaurant()
@@ -123,7 +161,26 @@ namespace ZC7ADM_HFT_2021221.WPFClient
 
             #endregion
 
+            #region Setting up Guests
 
+            Guests = new RestCollection<Guest>("http://localhost:31877/", "guest");
+            CreateGuest = new RelayCommand(() =>
+            {
+                Guests.Add(new Guest()
+                {
+                    Name = "Enter new Guest's Name here!",
+                    OrderId=1
+                });
+            });
+
+            DeleteGuest = new RelayCommand(() =>
+            Guests.Delete(SelectedGuest.GuestId),
+            () => { return SelectedGuest != null; }
+            );
+            UpdateGuest = new RelayCommand(() => Guests.Update(SelectedGuest));
+
+
+            #endregion
         }
     }
 }

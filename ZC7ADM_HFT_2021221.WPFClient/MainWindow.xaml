@@ -67,7 +67,33 @@
 
         </TabItem>
         <TabItem Header="Guests">
-            
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox ItemsSource="{Binding Guests}" SelectedItem="{Binding SelectedGuest}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Grid.Column="1">
+                    <Label Content="Guest's Name:" Background="DarkGreen" Padding="10"/>
+                    <TextBox Text="{Binding SelectedGuest.Name}" Padding="10"/>
+                    <Label Content="Guest's Number:" Background="DarkGreen" Padding="10"/>
+                    <TextBox Text="{Binding SelectedGuest.Number}" Padding="10"/>
+                    <Label Content="Restaurant's ID:" Background="DarkGreen" Padding="10"/>
+                    <TextBox Text="{Binding SelectedGuest.GuestId}" Padding="10"/>
+                    <Button Content="Create an Employee" Command="{Binding CreateGuest}" Margin="10" Padding="10"/>
+                    <Button Content="Delete an Employee" Command="{Binding DeleteGuest}" Margin="10" Padding="10"/>
+                    <Button Content="Update an Employee" Command="{Binding UpdateGuest}" Margin="10" Padding="10"/>
+                </StackPanel>
+            </Grid>
+
+
         </TabItem>
         
         
