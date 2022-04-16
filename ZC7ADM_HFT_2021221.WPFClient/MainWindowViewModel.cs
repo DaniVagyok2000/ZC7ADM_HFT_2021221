@@ -143,7 +143,7 @@ namespace ZC7ADM_HFT_2021221.WPFClient
 
             #region Setting up Restaurants
 
-            Restaurants = new RestCollection<Restaurant>("http://localhost:31877/", "restaurant");
+            Restaurants = new RestCollection<Restaurant>("http://localhost:31877/", "restaurant","hub");
             CreateRestaurant = new RelayCommand(() =>
             {
                 Restaurants.Add(new Restaurant()
@@ -163,7 +163,7 @@ namespace ZC7ADM_HFT_2021221.WPFClient
 
             #region Setting up Guests
 
-            Guests = new RestCollection<Guest>("http://localhost:31877/", "guest");
+            Guests = new RestCollection<Guest>("http://localhost:31877/", "guest","hub");
             CreateGuest = new RelayCommand(() =>
             {
                 Guests.Add(new Guest()

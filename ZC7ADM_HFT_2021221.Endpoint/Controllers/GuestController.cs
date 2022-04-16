@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ZC7ADM_HFT_2021221.Endpoint.Services;
 using ZC7ADM_HFT_2021221.Logic;
 using ZC7ADM_HFT_2021221.Models;
 
@@ -17,9 +19,10 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
 
         IGuestLogic gl;
         IHubContext<SignalRHub> hub;
-        public GuestController(IGuestLogic guestLogic)
+        public GuestController(IGuestLogic guestLogic, IHubContext<SignalRHub> hub)
         {
             this.gl = guestLogic;
+            this.hub = hub;
         }
 
         // GET: api/<GuestController>
@@ -41,6 +44,7 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Guest value)
         {
             gl.Create(value);
+            this.hub.Clients.All.SendAsync("GuestCreated", value);
         }
 
         // PUT api/<GuestController>/5
@@ -48,13 +52,16 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Guest value)
         {
             gl.Update(value);
+            this.hub.Clients.All.SendAsync("GuestUpdated", value);
         }
 
         // DELETE api/<GuestController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var guestToDelete = gl.Read(id);
             gl.Delete(id);
+            this.hub.Clients.All.SendAsync("GuestDeleted", guestToDelete);
         }
     }
 }
