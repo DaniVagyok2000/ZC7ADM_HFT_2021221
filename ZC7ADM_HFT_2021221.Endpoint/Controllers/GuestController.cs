@@ -16,6 +16,7 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
     {
 
         IGuestLogic gl;
+        IHubContext<SignalRHub> hub;
         public GuestController(IGuestLogic guestLogic)
         {
             this.gl = guestLogic;

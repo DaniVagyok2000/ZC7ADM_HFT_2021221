@@ -122,7 +122,7 @@ namespace ZC7ADM_HFT_2021221.WPFClient
         public MainWindowViewModel()
         {
             #region Seting up Employees
-            Employees = new RestCollection<Employee>("http://localhost:31877/", "employee");
+            Employees = new RestCollection<Employee>("http://localhost:31877/", "employee","hub");
             CreateEmployee = new RelayCommand(() =>
             {
                 Employees.Add(new Employee()
