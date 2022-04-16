@@ -30,12 +30,12 @@ namespace ZC7ADM_HFT_2021221.WPFClient
                         EmployeeId = value.EmployeeId,
                         Salary = value.Salary,
                         Guests = value.Guests,
-                        Restaurant = new Restaurant() { RestaurantName = "ASD" },
+                        Restaurant = value.Restaurant,
                         RestaurantId = value.RestaurantId
                     };
                     OnPropertyChanged();
                     (DeleteEmployee as RelayCommand).NotifyCanExecuteChanged();
-                    //(UpdateEmployee as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateEmployee as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }
@@ -68,7 +68,7 @@ namespace ZC7ADM_HFT_2021221.WPFClient
                     };
                     OnPropertyChanged();
                     (DeleteRestaurant as RelayCommand).NotifyCanExecuteChanged();
-                    //(UpdateEmployee as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateEmployee as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }
@@ -106,7 +106,7 @@ namespace ZC7ADM_HFT_2021221.WPFClient
                     };
                     OnPropertyChanged();
                     (DeleteGuest as RelayCommand).NotifyCanExecuteChanged();
-                    //(UpdateEmployee as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateEmployee as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }

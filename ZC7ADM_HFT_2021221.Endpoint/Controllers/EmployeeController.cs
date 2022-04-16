@@ -43,7 +43,7 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
         }
 
         // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
+        //[HttpPut("{id}")]
         public void Put([FromBody] Employee value)
         {
             eLogic.Update(value);

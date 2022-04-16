@@ -44,7 +44,7 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
         }
 
         // PUT api/<RestaurantController>/5
-        [HttpPut("{id}")]
+        //[HttpPut("{id}")]
         public void Put([FromBody] Restaurant value)
         {
             rl.Update(value);
