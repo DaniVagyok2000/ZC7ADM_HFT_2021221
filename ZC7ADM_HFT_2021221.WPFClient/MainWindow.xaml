@@ -20,7 +20,13 @@
                 <ListBox ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Label Content="{Binding Name}"/>
+                            <Border BorderThickness="10">
+                                <StackPanel>
+                                    <Label Content="{Binding Name}" ContentStringFormat="Név: {0}"/>
+                                    <Label Content="{Binding Salary}" ContentStringFormat="Fizetés: {0}"/>
+                                    <Label Content="{Binding RestaurantId}" ContentStringFormat="RestaurantId: {0}"/>
+                                </StackPanel>
+                            </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -48,7 +54,13 @@
                 <ListBox ItemsSource="{Binding Restaurants}" SelectedItem="{Binding SelectedRestaurant}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Label Content="{Binding RestaurantName}"/>
+                            <Border BorderThickness="10">
+                                <StackPanel>
+                                    <Label Content="{Binding RestaurantName}" ContentStringFormat="Étterem neve: {0}"/>
+                                    <Label Content="{Binding Rating}" ContentStringFormat="Értékelése: {0}"/>
+                                    <Label Content="{Binding Restaurant_id}" ContentStringFormat="RestaurantId: {0}"/>
+                                </StackPanel>
+                            </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -76,7 +88,14 @@
                 <ListBox ItemsSource="{Binding Guests}" SelectedItem="{Binding SelectedGuest}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Label Content="{Binding Name}"/>
+                            <Border BorderThickness="10">
+                                <StackPanel>
+                                    <Label Content="{Binding Name}" ContentStringFormat="Vendég neve: {0}"/>
+                                    <Label Content="{Binding Email}" ContentStringFormat="Vendég E-mail címe: {0}"/>
+                                    <Label Content="{Binding Number}" ContentStringFormat="Vendég telefonszáma: {0}"/>
+                                    <Label Content="{Binding GuestId}" ContentStringFormat="VendégId: {0}"/>
+                                </StackPanel>
+                            </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
