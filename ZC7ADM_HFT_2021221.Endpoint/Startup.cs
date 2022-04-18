@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ZC7ADM_HFT_2021221.Data;
+using ZC7ADM_HFT_2021221.Endpoint.Services;
 using ZC7ADM_HFT_2021221.Logic;
 using ZC7ADM_HFT_2021221.Repository;
 
@@ -30,6 +31,8 @@ namespace ZC7ADM_HFT_2021221.Endpoint
             services.AddTransient<IRestaurantRepository,RestaurantRepository>();
 
             services.AddTransient<RestaurantDbContext, RestaurantDbContext>();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,11 +43,18 @@ namespace ZC7ADM_HFT_2021221.Endpoint
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(x=>x.AllowCredentials()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithOrigins("http://localhost:37237"));
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
+                
             });
         }
     }

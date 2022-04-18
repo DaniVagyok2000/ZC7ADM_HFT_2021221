@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ZC7ADM_HFT_2021221.Endpoint.Services;
 using ZC7ADM_HFT_2021221.Logic;
 using ZC7ADM_HFT_2021221.Models;
 
@@ -16,10 +18,12 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
     {
 
         IRestaurantLogic rl;
+        IHubContext<SignalRHub> hub;
 
-        public RestaurantController(IRestaurantLogic restaurantLogic)
+        public RestaurantController(IRestaurantLogic restaurantLogic, IHubContext<SignalRHub> hub)
         {
             this.rl = restaurantLogic;
+            this.hub = hub;
         }
 
         // GET: api/<RestaurantController>
@@ -41,20 +45,24 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Restaurant value)
         {
             rl.Create(value);
+            this.hub.Clients.All.SendAsync("RestaurantCreated", value);
         }
 
         // PUT api/<RestaurantController>/5
-        [HttpPut("{id}")]
+        //[HttpPut("{id}")]
         public void Put([FromBody] Restaurant value)
         {
             rl.Update(value);
+            this.hub.Clients.All.SendAsync("RestaurantUpdated", value);
         }
 
         // DELETE api/<RestaurantController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var restaurantToDelete=rl.Read(id);
             rl.Delete(id);
+            this.hub.Clients.All.SendAsync("RestaurantDeleted", restaurantToDelete);
         }
     }
 }

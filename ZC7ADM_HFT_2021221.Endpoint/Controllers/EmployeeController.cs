@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ZC7ADM_HFT_2021221.Endpoint.Services;
 using ZC7ADM_HFT_2021221.Logic;
 using ZC7ADM_HFT_2021221.Models;
 
@@ -15,10 +17,12 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
     public class EmployeeController : ControllerBase
     {
         IEmployeeLogic eLogic;
-        public EmployeeController(IEmployeeLogic employeeLogic
-            )
+        IHubContext<SignalRHub> hub;
+
+        public EmployeeController(IEmployeeLogic employeeLogic, IHubContext<SignalRHub> hub)
         {
             this.eLogic = employeeLogic;
+            this.hub = hub;
         }
 
         // GET: /employee
@@ -39,21 +43,25 @@ namespace ZC7ADM_HFT_2021221.Endpoint.Controllers
         [HttpPost]
         public void Post([FromBody] Employee value)
         {
-            eLogic.Create(value);
+            this.eLogic.Create(value);
+            this.hub.Clients.All.SendAsync("EmployeeCreated",value);
         }
 
         // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
+        //[HttpPut]
         public void Put([FromBody] Employee value)
         {
-            eLogic.Update(value);
+            this.eLogic.Update(value);
+            this.hub.Clients.All.SendAsync("EmployeeUpdated", value);
         }
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            eLogic.Delete(id);
+            var employeetoDelete = this.eLogic.Read(id);
+            this.eLogic.Delete(id);
+            this.hub.Clients.All.SendAsync("EmployeeDeleted", employeetoDelete);
         }
     }
 }
