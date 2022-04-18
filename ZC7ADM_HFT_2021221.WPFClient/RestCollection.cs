@@ -16,7 +16,7 @@ namespace ZC7ADM_HFT_2021221.WPFClient
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "swagger")
+        public RestService(string baseurl, string pingableEndpoint = "employee")
         {
             bool isOk = false;
             do
