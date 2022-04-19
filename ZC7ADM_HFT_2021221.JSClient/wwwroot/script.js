@@ -25,7 +25,7 @@ function display() {
 }
 
 function remove(id) {
-    fetch('http://localhost:31877/employee' + id, {
+    fetch('http://localhost:31877/employee/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
