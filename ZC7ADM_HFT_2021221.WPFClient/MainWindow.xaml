@@ -30,17 +30,19 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <StackPanel Grid.Column="1">
-                    <Label Content="Employee's Name:" Background="Chocolate" Padding="10"/>
-                    <TextBox Text="{Binding SelectedEmployee.Name}" Padding="10"/>
-                    <Label Content="Salary:" Background="Chocolate" Padding="10"/>
-                    <TextBox Text="{Binding SelectedEmployee.Salary}" Padding="10"/>
-                    <Label Content="Restaurant's id:" Background="Chocolate" Padding="10"/>
-                    <TextBox Text="{Binding SelectedEmployee.RestaurantId}" Padding="10"/>
-                    <Button Content="Create an Employee" Command="{Binding CreateEmployee}" Margin="10" Padding="10"/>
-                    <Button Content="Delete an Employee" Command="{Binding DeleteEmployee}" Margin="10" Padding="10"/>
-                    <Button Content="Update an Employee" Command="{Binding UpdateEmployee}" Margin="10" Padding="10"/>
-                </StackPanel>
+                <Grid Grid.Column="1">
+                    <StackPanel>
+                        <Label Content="Employee's Name:" Background="Chocolate" Padding="10"/>
+                        <TextBox Text="{Binding SelectedEmployee.Name}" Padding="10"/>
+                        <Label Content="Salary:" Background="Chocolate" Padding="10"/>
+                        <TextBox Text="{Binding SelectedEmployee.Salary}" Padding="10"/>
+                        <Label Content="Restaurant's id:" Background="Chocolate" Padding="10"/>
+                        <TextBox Text="{Binding SelectedEmployee.RestaurantId}" Padding="10"/>
+                        <Button Content="Create an Employee" Command="{Binding CreateEmployee}" Margin="10" Padding="10"/>
+                        <Button Content="Delete an Employee" Command="{Binding DeleteEmployee}" Margin="10" Padding="10"/>
+                        <Button Content="Update an Employee" Command="{Binding UpdateEmployee}" Margin="10" Padding="10"/>
+                    </StackPanel>
+                </Grid>
             </Grid>
 
         </TabItem>
@@ -64,17 +66,19 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <StackPanel Grid.Column="1">
-                    <Label Content="Restaurant's Name:" Background="Azure" Padding="10"/>
-                    <TextBox Text="{Binding SelectedRestaurant.RestaurantName}" Padding="10"/>
-                    <Label Content="Restaurant's Rating:" Background="Azure" Padding="10"/>
-                    <TextBox Text="{Binding SelectedRestaurant.Rating}" Padding="10"/>
-                    <Label Content="Restaurant's ID:" Background="Azure" Padding="10"/>
-                    <TextBox Text="{Binding SelectedRestaurant.Restaurant_id}" Padding="10"/>
-                    <Button Content="Create an Employee" Command="{Binding CreateRestaurant}" Margin="10" Padding="10"/>
-                    <Button Content="Delete an Employee" Command="{Binding DeleteRestaurant}" Margin="10" Padding="10"/>
-                    <Button Content="Update an Employee" Command="{Binding Updaterestaurant}" Margin="10" Padding="10"/>
-                </StackPanel>
+                <Grid Grid.Column="1">
+                    <StackPanel>
+                        <Label Content="Restaurant's Name:" Background="Azure" Padding="10"/>
+                        <TextBox Text="{Binding SelectedRestaurant.RestaurantName}" Padding="10"/>
+                        <Label Content="Restaurant's Rating:" Background="Azure" Padding="10"/>
+                        <TextBox Text="{Binding SelectedRestaurant.Rating}" Padding="10"/>
+                        <Label Content="Restaurant's ID:" Background="Azure" Padding="10"/>
+                        <TextBox Text="{Binding SelectedRestaurant.Restaurant_id}" Padding="10"/>
+                        <Button Content="Create a Restaurant" Command="{Binding CreateRestaurant}" Margin="10" Padding="10"/>
+                        <Button Content="Delete a Restaurant" Command="{Binding DeleteRestaurant}" Margin="10" Padding="10"/>
+                        <Button Content="Update a Restaurant" Command="{Binding Updaterestaurant}" Margin="10" Padding="10"/>
+                    </StackPanel>
+                </Grid>
             </Grid>
 
         </TabItem>
@@ -90,26 +94,30 @@
                         <DataTemplate>
                             <Border BorderThickness="10">
                                 <StackPanel>
-                                    <Label Content="{Binding Name}" ContentStringFormat="Vendég neve: {0}"/>
-                                    <Label Content="{Binding Email}" ContentStringFormat="Vendég E-mail címe: {0}"/>
-                                    <Label Content="{Binding Number}" ContentStringFormat="Vendég telefonszáma: {0}"/>
-                                    <Label Content="{Binding GuestId}" ContentStringFormat="VendégId: {0}"/>
+                                    <Label Content="{Binding Name}" ContentStringFormat="Guest's Name: {0}"/>
+                                    <Label Content="{Binding Email}" ContentStringFormat="Guest's E-mail Address: {0}"/>
+                                    <Label Content="{Binding Number}" ContentStringFormat="Guest's Number: {0}"/>
+                                    <Label Content="{Binding OrderId}" ContentStringFormat="OrderId: {0}"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <StackPanel Grid.Column="1">
-                    <Label Content="Guest's Name:" Background="DarkGreen" Padding="10"/>
-                    <TextBox Text="{Binding SelectedGuest.Name}" Padding="10"/>
-                    <Label Content="Guest's Number:" Background="DarkGreen" Padding="10"/>
-                    <TextBox Text="{Binding SelectedGuest.Number}" Padding="10"/>
-                    <Label Content="Restaurant's ID:" Background="DarkGreen" Padding="10"/>
-                    <TextBox Text="{Binding SelectedGuest.GuestId}" Padding="10"/>
-                    <Button Content="Create an Employee" Command="{Binding CreateGuest}" Margin="10" Padding="10"/>
-                    <Button Content="Delete an Employee" Command="{Binding DeleteGuest}" Margin="10" Padding="10"/>
-                    <Button Content="Update an Employee" Command="{Binding UpdateGuest}" Margin="10" Padding="10"/>
-                </StackPanel>
+                <Grid Grid.Column="1">
+                    <StackPanel>
+                        <Label Content="Guest's Name:" Background="DarkGreen" Padding="10"/>
+                        <TextBox Text="{Binding SelectedGuest.Name}" Padding="10"/>
+                        <Label Content="Guest's Email:" Background="DarkGreen" Padding="10"/>
+                        <TextBox Text="{Binding SelectedGuest.Email}" Padding="10"/>
+                        <Label Content="Guest's Number:" Background="DarkGreen" Padding="10"/>
+                        <TextBox Text="{Binding SelectedGuest.Number}" Padding="10"/>
+                        <Label Content="Restaurant's ID:" Background="DarkGreen" Padding="10"/>
+                        <TextBox Text="{Binding SelectedGuest.OrderId}" Padding="10"/>
+                        <Button Content="Create a Guest" Command="{Binding CreateGuest}" Margin="10" Padding="10"/>
+                        <Button Content="Delete a Guest" Command="{Binding DeleteGuest}" Margin="10" Padding="10"/>
+                        <Button Content="Update a Guest" Command="{Binding UpdateGuest}" Margin="10" Padding="10"/>
+                    </StackPanel>
+                </Grid>
             </Grid>
 
 
