@@ -51,9 +51,9 @@ function create()
         },
         body: JSON.stringify(
             {
-                employeename: Name,
-                employeesalary: sal,
-                employeerestid: restId
+                name: Name,
+                salary: sal,
+                restaurantId: restId
             }),
     })
         .then(response => response)
