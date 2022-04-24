@@ -44,7 +44,8 @@ function update(id)
     let Name = document.getElementById('employeename').value;
     let sal = document.getElementById('employeesalary').value;
     let restId = document.getElementById('restaurantid').value;
-    fetch('http://localhost:31877/employee/' + id, {
+    let empid = id;
+    fetch('http://localhost:31877/employee', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -54,10 +55,10 @@ function update(id)
                 name: Name,
                 salary: sal,
                 restaurantId: restId,
-                employeeId: id
+                employeeId: empid
             }),
     })
-        .then(response => response.json())
+        .then(response => response)
         .then(data => {
             console.log('Success:', data);
             getData();
