@@ -42,7 +42,7 @@ namespace ZC7ADM_HFT_2021221.Models
 
         public override int GetHashCode()
         {
-            return this.Name.Length * this.RestaurantId * this.Salary;
+            return this.Name.Length + this.RestaurantId * this.Salary;
         }
     }
 
