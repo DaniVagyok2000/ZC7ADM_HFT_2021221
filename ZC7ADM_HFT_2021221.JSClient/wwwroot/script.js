@@ -1,6 +1,7 @@
 ﻿let employees = [];
 let connection = null;
 getData();
+setupSignalR();
 
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
@@ -11,9 +12,20 @@ function setupSignalR() {
     connection.on
         (
             "EmployeeCreated", (user, message) => {
-            console.log(user);
-            console.log(message);
+                getData();
         });
+
+    connection.on
+        (
+            "EmployeeDeleted", (user, message) => {
+                getData();
+        });
+
+    connection.on
+        (
+            "EmployeeUpdated", (user, message) => {
+                getData();
+            });
 
     connection.onclose
         (async () => {
